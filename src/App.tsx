@@ -2,6 +2,7 @@ import { Header, Footer } from './components'
 import {
   Hero,
   Categories,
+  HowWorks,
   Services,
   SearchProfessional,
   Benefits,
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <Hero />
       <Categories />
+      <HowWorks />
       <Services />
       <SearchProfessional />
       <Benefits />   
