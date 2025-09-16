@@ -3,7 +3,7 @@ import arrowRight from '../assets/icons/arrow-right.svg';
 
 export function BePart() {
   return (
-    <section className="container mx-auto">
+    <section className="container mx-auto px-[64px]">
       <div className="grid grid-cols-2 bg-secondary-15 gap-[32px] rounded-[20px] px-[64px] py-[32px]">
         <div className="flex flex-col justify-center">
           <h1 className="text-secondary-100 text-[32px] font-semibold">Faça parte da Tserve!</h1>

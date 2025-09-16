@@ -3,7 +3,7 @@ import { reviews } from "../mocks/reviews";
 
 export function Review() {
   return (
-    <section className="container mx-auto gap-[8px]">
+    <section className="container mx-auto gap-[8px] px-[64px]">
       <span className="text-primary-100 text-[10px] font-semibold">DEPOIMENTOS DOS NOSSOS CLIENTES</span>
       <div className="flex items-center gap-[32px]">
         <h1 className="text-tertiary-100 text-[32px] font-semibold">Porque escolher a Tserve?</h1>
@@ -11,14 +11,7 @@ export function Review() {
       </div>
 
       <div className="flex items-center gap-[16px] mt-[28px]">
-        {reviews.map(r => (
-          <ReviewCard
-            key={r.name}
-            name={r.name}
-            info={r.info}
-            description={r.decription}
-          />
-        ))}
+        {reviews.map((r, index) => <ReviewCard key={r.name} index={index} review={r}/>)}
       </div>
     </section>
   );

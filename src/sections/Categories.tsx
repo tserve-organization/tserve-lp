@@ -3,7 +3,7 @@ import { categories } from "../mocks/categories";
 
 export function Categories() {
   return (
-    <section className="container mx-auto">
+    <section className="container mx-auto px-[64px]">
       <div className="flex flex-col gap-[16px]">
         <div>
           <h3 className="text-tertiary-100 text-[16px] font-semibold">Categorias mais procuradas</h3>

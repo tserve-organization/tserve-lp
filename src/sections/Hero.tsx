@@ -3,7 +3,7 @@ import searchIcon from '../assets/icons/search-icon.svg';
 
 export function Hero() {
   return (
-    <section className="container mx-auto">
+    <section className="container mx-auto px-[64px]">
       <div className="grid grid-cols-2 bg-neutral-10 rounded-[20px] p-[64px]">
         <div className="flex flex-col gap-[16px]">
           <div className="flex flex-col gap-[8px] max-w-[350px]">
