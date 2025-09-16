@@ -6,5 +6,5 @@ export const categories = [
   {icon: categoryIcons.wellBeing, label: 'Bem-estar '},
   {icon: categoryIcons.houseAndGarden, label: 'Casa e jardim'},
   {icon: categoryIcons.store, label: 'Comércio '},
-  {icon: categoryIcons.pet, label: 'Pets'},
+  {icon: categoryIcons.pet, label: 'Animais de estimação'},
 ];
