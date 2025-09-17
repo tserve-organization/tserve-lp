@@ -1,8 +1,12 @@
+import { useNavigate } from "@tanstack/react-router";
 import professional from "../assets/images/bg-professional.png";
+import { Button } from "../components";
 
 export function SearchProfessional() {
+  const navigate = useNavigate();
+
   return (
-    <section className="container mx-auto px-[64px]">
+    <section className="container">
       <div className="grid grid-cols-2 h-[330px] bg-primary-10 rounded-[20px]">
         <div className="relative">
           <img src={professional} alt="professional" className="absolute bottom-[0px] left-[40px]" />
@@ -11,9 +15,7 @@ export function SearchProfessional() {
           <h1 className="text-primary-100 text-[32px] font-semibold">Precisa de uma diarista?</h1>
           <p className="text-[14px] mb-[8px]">Encontre profissionais de confiança perto de você.</p>
           <div>
-            <button className="flex items-center justify-center bg-primary-100 rounded-[30px] px-[16px] py-[13px]">
-              <span className="text-white text-[16px] font-semibold">Buscar profissionais</span>
-            </button>
+            <Button label="Buscar profissionais" onClick={() => navigate({to: '/coming-soon'})} />
           </div>
         </div>
       </div>

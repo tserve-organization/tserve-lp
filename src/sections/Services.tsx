@@ -1,40 +1,42 @@
 import { useEffect, useRef, useState } from "react";
 import { ServiceCard } from "../components";
 import { services } from "../mocks/services";
+import { ArrowRight } from "../components/icons/ArrowRight";
+import { ArrowLeft } from "../components/icons/ArrowLeft";
+import { cn } from "../utils/cn";
 
 export function Services() {
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   useEffect(() => {
-    const el = trackRef.current;
+    const el = containerRef.current;
     if (!el) return;
-
-    const onScroll = () => {
-      // el ainda pode ser null em hot-reload; proteja
-      const node = trackRef.current;
-      if (!node) return;
-      setAtStart(node.scrollLeft <= 0);
-      const max = node.scrollWidth - node.clientWidth - 1; // folga
-      setAtEnd(node.scrollLeft >= max);
-    };
-
-    el.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => el.removeEventListener("scroll", onScroll);
+    checkScroll();
+    el.addEventListener('scroll', checkScroll);
+    return () => el.removeEventListener('scroll', checkScroll);
   }, []);
 
-  const scrollByView = (dir: "next" | "prev") => {
-    const el = trackRef.current;
-    if (!el) return;
-    const delta = dir === "next" ? el.clientWidth : -el.clientWidth;
+  const scroll = (direction: 'left' | 'right') => {
+    if (!containerRef.current) return;
 
-    // usar scrollTo evita warning de typings em alguns setups
-    el.scrollTo({
-      left: el.scrollLeft + delta,
-      behavior: "smooth",
-    });
+    const el = containerRef.current;
+    const scrollStep = 300;
+    const scrollAmount = direction === 'right' ? scrollStep : -scrollStep;
+    el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  };
+
+  const checkScroll = () => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const scrollMax = el.scrollWidth - el.clientWidth;
+    const atStart = el.scrollLeft <= 10;
+    const atEnd = el.scrollLeft >= scrollMax - 10;
+
+    setCanScrollLeft(!atStart);
+    setCanScrollRight(!atEnd);
   };
 
   return (
@@ -47,14 +49,8 @@ export function Services() {
 
         <div className="relative">
           <div
-            ref={trackRef}
-            className="
-              overflow-x-auto scroll-smooth
-              snap-x snap-mandatory
-              [-ms-overflow-style:none] [scrollbar-width:none]
-              [&::-webkit-scrollbar]:hidden
-              pr-2
-            "
+            ref={containerRef}
+            className="hide-scrollbar flex gap-4 overflow-x-auto scroll-smooth"
           >
             <div className="flex gap-[16px]">
               {services.map(item => (
@@ -69,26 +65,26 @@ export function Services() {
         <div className="flex justify-end">
           <div className="flex items-center gap-[27px]">
             <button
-              onClick={() => scrollByView("prev")}
-              disabled={atStart}
-              className="
-                flex items-center justify-center w-8 h-8 rounded-full
-                bg-primary-10 disabled:opacity-40 disabled:cursor-not-allowed
-              "
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className={cn(
+                'flex items-center justify-center w-8 h-8 rounded-full disabled:opacity-40 disabled:cursor-not-allowed',
+                canScrollLeft ? 'bg-primary-10' : 'bg-neutral-35'
+              )}
               aria-label="Anterior"
             >
-
+              <ArrowLeft size={16} color={!canScrollLeft ? '#9CA3AF' : '#33CC99'} />
             </button>
             <button
-              onClick={() => scrollByView("next")}
-              disabled={atEnd}
-              className="
-                flex items-center justify-center w-8 h-8 rounded-full
-                bg-primary-10 disabled:opacity-40 disabled:cursor-not-allowed
-              "
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className={cn(
+                'flex items-center justify-center w-8 h-8 rounded-full disabled:opacity-40 disabled:cursor-not-allowed',
+                canScrollRight ? 'bg-primary-10' : 'bg-neutral-35'
+              )}
               aria-label="Próximo"
             >
-
+              <ArrowRight size={16} color={!canScrollRight ? '#9CA3AF' : '#33CC99'} />
             </button>
           </div>
         </div> 

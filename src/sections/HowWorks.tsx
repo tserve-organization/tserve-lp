@@ -22,7 +22,7 @@ export function HowWorks() {
   ];
 
   return (
-    <section className="container mx-auto px-[64px]">
+    <section className="container">
       <div className="flex flex-col gap-[24px]">
         <div className="flex flex-col gap-[8px]">
           <h1 className="text-tertiary-100 text-[32px] font-semibold">Como a Tserve funciona?</h1>

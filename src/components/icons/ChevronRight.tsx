@@ -1,8 +1,4 @@
-
-type IconProps = {
-  size?: number
-  color?: string
-}
+import type { IconProps } from "./type";
 
 export function ChevronRight({size, color}: IconProps) {
   return (
