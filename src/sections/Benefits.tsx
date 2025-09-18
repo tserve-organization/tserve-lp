@@ -3,7 +3,7 @@ import storeIcon from '../assets/icons/store.icon.svg';
 
 export function Benefits() {
   return (
-    <section className="container mx-auto px-[64px]">
+    <section className="container">
       <div className="flex flex-col gap-[24px]">
         <h1 className="text-tertiary-100 text-[32px] font-semibold">
           Benefícios para <span className="text-primary-100">clientes</span> e para {''}

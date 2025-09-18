@@ -62,13 +62,18 @@
   --color-error-20: #FFE4E7;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@layer components {
+  .container {
+    @apply md:container md:mx-auto px-[20px] md:px-[64px];
+  }
+
+  .container-footer {
+    @apply md:container md:mx-auto px-[20px] md:p-[64px];
+  }
+
+  .grid-default {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-[16px];
+  }
 }
 
 @utility hide-scrollbar {

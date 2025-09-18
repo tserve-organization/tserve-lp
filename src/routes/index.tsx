@@ -1,4 +1,4 @@
-import { Header, Footer } from './components'
+import { createFileRoute } from '@tanstack/react-router'
 import {
   Hero,
   Categories,
@@ -9,12 +9,15 @@ import {
   Store,
   BePart,
   Review,
-} from './sections'
+} from '../sections'
 
-function App() {
+export const Route = createFileRoute('/')({
+  component: Home,
+})
+
+function Home() {
   return (
-    <main className="w-full flex flex-col gap-[64px]">
-      <Header />
+    <main className="flex flex-col gap-[64px] py-[64px]">
       <Hero />
       <Categories />
       <HowWorks />
@@ -24,9 +27,6 @@ function App() {
       <Store />
       <BePart />
       <Review />
-      <Footer />
     </main>
   )
 }
-
-export default App
